@@ -1,0 +1,31 @@
+{
+  "entry": "server.js",
+  "files": {
+    "pages/ban.js": "pages/ban.js",
+    "pages/champions/_champion.js": "pages/champions/_champion.js",
+    "pages/champions/index.js": "pages/champions/index.js",
+    "pages/download.js": "pages/download.js",
+    "pages/index.js": "pages/index.js",
+    "pages/items.js": "pages/items.js",
+    "pages/news/_category.js": "pages/news/_category.js",
+    "pages/news/articles/_content.js": "pages/news/articles/_content.js",
+    "pages/news/index.js": "pages/news/index.js",
+    "pages/serverStatus.js": "pages/serverStatus.js",
+    "pages/tutorial.js": "pages/tutorial.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "pages/ban.js": "pages/ban.js.map",
+    "pages/champions/_champion.js": "pages/champions/_champion.js.map",
+    "pages/champions/index.js": "pages/champions/index.js.map",
+    "pages/download.js": "pages/download.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/items.js": "pages/items.js.map",
+    "pages/news/_category.js": "pages/news/_category.js.map",
+    "pages/news/articles/_content.js": "pages/news/articles/_content.js.map",
+    "pages/news/index.js": "pages/news/index.js.map",
+    "pages/serverStatus.js": "pages/serverStatus.js.map",
+    "pages/tutorial.js": "pages/tutorial.js.map",
+    "server.js": "server.js.map"
+  }
+}
