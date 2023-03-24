@@ -90,7 +90,7 @@ export default {
   computed: {
     ...mapState('News', ['newContent', 'footprint', 'firstTimeLoading']),
     isPatchNote() {
-      return this.newContent.type !== 'normal';
+      return this.newContent?.type !== 'normal';
     },
   },
   mounted() {
