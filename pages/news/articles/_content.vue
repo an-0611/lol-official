@@ -71,6 +71,10 @@ export default {
   //   // Must be a number
   //   return /^\d+$/.test(params.content);
   // },
+  async generate({ store, params }) {
+    const { content } = params
+    await store.dispatch('getNewContent', { newId: content });
+  },
   data() {
     return {
       breadData: [
