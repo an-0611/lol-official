@@ -190,7 +190,7 @@ export default {
     
     .cnt {
       flex: 1;
-      text-align: left;
+      // text-align: left;
       // @include withRegion('tw') {
         font-size: 12px;
         @include rwd($md) {
