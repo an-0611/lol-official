@@ -1,3 +1,18 @@
+# hide
+assets
+components
+i18n
+layouts
+plugins
+services
+static
+nuxt.config.js
+package-lock.json
+package.json
+utils.js
+webpack.env.js
+yarn.lock
+
 # Dependencies
 node_modules
 jspm_packages
