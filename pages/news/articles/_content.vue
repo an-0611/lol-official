@@ -2,16 +2,15 @@
   <div id="NewsContentPage" :class="{ isPatchNote }">
     <Loading v-if="firstTimeLoading" style="padding: 1rem 0" />
     <template v-else>
-      123321
-      <!-- <div
+      <div
         id="blurBackground"
         :style="{
           backgroundImage: `url('${newContent.backgroundImg}'), url('${defaultBg}')`,
         }"
       >
         <BreadCrumb :bread-data="breadData" />
-      </div> -->
-      <!-- <div id="newsContentPageContent" class="container">
+      </div>
+      <div id="newsContentPageContent" class="container">
         <div
           :class="[
             'newBannerBox',
@@ -52,7 +51,7 @@
             v-html="newContent.content"
           />
         </div>
-      </div> -->
+      </div>
     </template>
   </div>
 </template>
@@ -68,10 +67,10 @@ export default {
       newId: params.content,
     });
   },
-  // validate({ params }) {
-  //   // Must be a number
-  //   return /^\d+$/.test(params.content);
-  // },
+  validate({ params }) {
+    // Must be a number
+    return /^\d+$/.test(params.content);
+  },
   data() {
     return {
       breadData: [

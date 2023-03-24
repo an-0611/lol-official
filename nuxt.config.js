@@ -131,6 +131,7 @@ export default {
   },
   publicPath: '/lol-official/',
   generate: {
-    dir: 'dist'
+    dir: 'dist',
+    routes: ['/news/articles/123']
   }
 }
