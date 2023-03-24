@@ -1,13 +1,15 @@
 # hide
 assets
 components
+dist
 i18n
 layouts
+pages
 plugins
 services
 static
+store
 nuxt.config.js
-package-lock.json
 package.json
 utils.js
 webpack.env.js
