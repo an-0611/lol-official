@@ -50,7 +50,8 @@ const actions = {
       const res = await services.getNav;
       const data = utils.checkRes(res);
       commit(UPDATE_NAV, data);
-      if (route !== '/') dispatch('updateBgImgAndFgImg', { route });
+      // if (route !== '/') dispatch('updateBgImgAndFgImg', { route });
+      dispatch('updateBgImgAndFgImg', { route });
     } catch (error) {
       // this.app.$sentry.captureException(error);
       // const errMsg = utils.catchErr(error);

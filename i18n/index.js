@@ -45,10 +45,10 @@ const fetchMessage = async (region) => {
 };
 
 export async function loadLocale(i18n, region) {
-  if (!Object.keys(langMap).includes(region)) {
-    // eslint-disable-next-line no-console
-    return console.warn(`[nuxt-i18n] Undefined i18n region: ${region}`);
-  }
+  // if (!Object.keys(langMap).includes(region)) {
+  //   // eslint-disable-next-line no-console
+  //   return console.warn(`[nuxt-i18n] Undefined i18n region: ${region}`);
+  // }
   if (region in loadedRegions) {
     return i18n.setLocale(region);
   }

@@ -58,19 +58,19 @@
 
 <script>
 // eslint-disable-next-line
-import { mapState } from 'vuex';
+import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'NewsContentPage',
-  async fetch({ store, params }) {
-    await store.dispatch('News/getNewContent', {
-      newId: params.content,
-    });
-  },
-  validate({ params }) {
-    // Must be a number
-    return /^\d+$/.test(params.content);
-  },
+  // async fetch({ store, params }) {
+  //   await store.dispatch('News/getNewContent', {
+  //     newId: params.content,
+  //   });
+  // },
+  // validate({ params }) {
+  //   // Must be a number
+  //   return /^\d+$/.test(params.content);
+  // },
   data() {
     return {
       breadData: [
@@ -98,16 +98,21 @@ export default {
     //   window.location.replace(this.newContent.externalLink);
     //   return;
     // }
+    this.getNewContent({ newId: this.$route.params.content });
+    //
     if (this.footprint) this.breadData.push(...this.footprint);
     const tables = document.querySelectorAll('table');
-    tables.forEach((table) => {
-      table.parentNode.style.overflow = 'auto';
-    });
-    if (process.env.REGION === 'vn') {
-      this.replaceVNOldNewsLink();
+    if (tables) {
+      tables.forEach((table) => {
+        table.parentNode.style.overflow = 'auto';
+      });
     }
+    // if (process.env.REGION === 'vn') {
+    //   this.replaceVNOldNewsLink();
+    // }
   },
   methods: {
+    ...mapActions('News', ['getNewContent']),
     hideBanner() {
       this.isBannerError = true;
     },
