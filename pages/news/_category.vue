@@ -48,9 +48,9 @@ export default {
       }),
     ]);
   },
-  validate({ params }) {
-    return /\w+$/g.test(params.category);
-  },
+  // validate({ params }) {
+  //   return /\w+$/g.test(params.category);
+  // },
   data() {
     return {
       searchText: '',

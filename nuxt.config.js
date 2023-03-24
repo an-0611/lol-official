@@ -129,5 +129,8 @@ export default {
   router: {
     base: '/lol-official/'
   },
-  publicPath: '/lol-official/'
+  publicPath: '/lol-official/',
+  generate: {
+    dir: 'dist'
+  }
 }
