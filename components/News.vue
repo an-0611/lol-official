@@ -175,9 +175,9 @@ export default {
           padding: 0.18rem 0 0.2rem 0;
           font-size: 0.38rem;
         }
-        @include withRegion('th') {
-          font-family: 'Kanit', Arial, Helvetica, sans-serif;
-        }
+        // @include withRegion('th') {
+        //   font-family: 'Kanit', Arial, Helvetica, sans-serif;
+        // }
         @include withRegion('vn') {
           overflow: visible;
           white-space: normal;

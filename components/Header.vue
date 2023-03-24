@@ -131,6 +131,12 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'Header',
+  // async fetch({ store }) {
+  //   await store.dispatch('Main/getNav');
+  // },
+  mounted() {
+    this.getNav({ route: this.$route.path });
+  },
   data() {
     return {
       isShowDropdown: false,
@@ -270,9 +276,9 @@ export default {
               color: white;
               font-size: 0.28rem;
               display: inline-block;
-              @include withRegion('th') {
-                font-family: 'Kanit', Arial, Helvetica, sans-serif;
-              }
+              // @include withRegion('th') {
+              //   font-family: 'Kanit', Arial, Helvetica, sans-serif;
+              // }
             }
           }
         }
@@ -389,9 +395,9 @@ export default {
           background-clip: text;
           -webkit-text-fill-color: tan;
           font-weight: 600;
-          @include withRegion('th') {
-            font-family: 'Kanit', Arial, Helvetica, sans-serif;
-          }
+          // @include withRegion('th') {
+          //   font-family: 'Kanit', Arial, Helvetica, sans-serif;
+          // }
           &.active {
             color: red;
             border-bottom: 3px solid #0bc6e3;

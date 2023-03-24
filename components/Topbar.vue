@@ -1,7 +1,7 @@
 <template>
-  <client-only>
+  <!-- <client-only> -->
     <div id="topbar" />
-  </client-only>
+  <!-- </client-only> -->
 </template>
 
 <script>
@@ -12,8 +12,8 @@ export default {
       REGION: process.env.REGION,
     };
   },
-  mounted() {
-    // if (window && this.REGION === 'tw') window.sitebar.create();
-  },
+  // mounted() {
+  //   if (window && this.REGION === 'tw') window.sitebar.create();
+  // },
 };
 </script>

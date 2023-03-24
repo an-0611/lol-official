@@ -5,7 +5,7 @@
         <p v-html="$t('LOL__REMIND_TEXT__ONLY_TW_REGION')" />
       </div>
       <div class="bottom">
-        <div class="logos" />
+        <!-- <div class="logos" /> -->
         <div class="cnt">
           <!-- all region copyright -->
           <div class="copyrights" v-html="$t('LOL__FOOTER__COPYRIGHT')" />
@@ -60,11 +60,11 @@
           <div class="lv-icon--12"></div>
           <div class="lv-text">
             <p>
-              本遊戲為免費使用，遊戲情節涉及暴力、菸酒畫面。<br />
+              本遊戲為DEMO，遊戲情節涉及暴力、菸酒畫面。<br />
               遊戲內另提供購買虛擬遊戲幣、物品等付費服務。<br />
               請注意遊戲時間，避免沈迷。
             </p>
-            <div class="service-region">本遊戲服務區域為台灣、香港、澳門。</div>
+            <div class="service-region">本遊戲服務區域為DEMO。</div>
           </div>
         </div>
       </div>
@@ -124,7 +124,7 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 #footer {
   padding: 10px 0 50px;
   margin-top: -10px;
@@ -164,33 +164,34 @@ export default {
       flex-direction: unset;
     }
 
-    .logos {
-      width: 180px;
-      height: 45px;
-      display: flex;
-      margin: 0 auto 20px;
-      background: assetsUrl('footer/logos.png') no-repeat;
-      background-position: center 0%;
-      @include withRegion('tw') {
-        width: 200px;
-        height: 45px;
-        background-size: 100% 100%;
-      }
-      @include withRegion('vn') {
-        width: 100%;
-        height: 65px;
-        background: assetsUrl('footer/logos-vn.png') no-repeat;
-        background-position: center 0%;
-      }
-      @include rwd($md) {
-        width: 320px;
-        margin: 0 auto 20px;
-      }
-    }
+    // .logos {
+    //   width: 180px;
+    //   height: 45px;
+    //   display: flex;
+    //   margin: 0 auto 20px;
+    //   background: assetsUrl('footer/logos.png') no-repeat;
+    //   background-position: center 0%;
+    //   @include withRegion('tw') {
+    //     width: 200px;
+    //     height: 45px;
+    //     background-size: 100% 100%;
+    //   }
+    //   @include withRegion('vn') {
+    //     width: 100%;
+    //     height: 65px;
+    //     background: assetsUrl('footer/logos-vn.png') no-repeat;
+    //     background-position: center 0%;
+    //   }
+    //   @include rwd($md) {
+    //     width: 320px;
+    //     margin: 0 auto 20px;
+    //   }
+    // }
+    
     .cnt {
       flex: 1;
       text-align: left;
-      @include withRegion('tw') {
+      // @include withRegion('tw') {
         font-size: 12px;
         @include rwd($md) {
           width: auto;
@@ -248,39 +249,39 @@ export default {
             }
           }
         }
-      }
-      @include withRegion('vn') {
-        .vn-playForFree {
-          margin-top: 30px;
-          text-align: center;
-          .playForFree {
-            color: #fff;
-            width: 180px;
-            height: 50px;
-            line-height: 52px;
-            font-size: 16px;
-            font-weight: 600;
-            margin-right: 30px;
-            display: inline-block;
-            background: assetsUrl('footer/playForFree.png') no-repeat;
-            background-size: contain;
-            vertical-align: middle;
-            @include rwd($sm) {
-              display: none;
-            }
-          }
-          .age-limit {
-            width: 116px;
-            height: 51px;
-            line-height: 52px;
-            font-size: 16px;
-            vertical-align: middle;
-            display: inline-block;
-            background: assetsUrl('footer/vn-12.png') no-repeat;
-            background-size: contain;
-          }
-        }
-      }
+      // }
+      // @include withRegion('vn') {
+      //   .vn-playForFree {
+      //     margin-top: 30px;
+      //     text-align: center;
+      //     .playForFree {
+      //       color: #fff;
+      //       width: 180px;
+      //       height: 50px;
+      //       line-height: 52px;
+      //       font-size: 16px;
+      //       font-weight: 600;
+      //       margin-right: 30px;
+      //       display: inline-block;
+      //       background: assetsUrl('footer/playForFree.png') no-repeat;
+      //       background-size: contain;
+      //       vertical-align: middle;
+      //       @include rwd($sm) {
+      //         display: none;
+      //       }
+      //     }
+      //     .age-limit {
+      //       width: 116px;
+      //       height: 51px;
+      //       line-height: 52px;
+      //       font-size: 16px;
+      //       vertical-align: middle;
+      //       display: inline-block;
+      //       background: assetsUrl('footer/vn-12.png') no-repeat;
+      //       background-size: contain;
+      //     }
+      //   }
+      // }
       .copyrights {
         color: white;
         line-height: 1.4;

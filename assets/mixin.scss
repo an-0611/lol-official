@@ -99,8 +99,8 @@
 }
 
 @mixin svgBorder($width: null, $height: null, $color: #c2c1c1) {
-  width: #{$width * 1rem / 100};
-  height: #{$height * 1rem / 100};
+  width: calc($width * 1rem / 100);
+  height: calc($height * 1rem / 100);
   $round: #{($width + $height) * 2};
   $name: #{'svgAnimation' + ($width + $height) * 2};
   path {
