@@ -11,7 +11,7 @@
 
         <div class="imgBox">
           <!-- <img :src="item.img" /> -->
-          <img :src="`lol-official/imgs/340x224-1.jpg`" />
+          <img :src="`/lol-official/imgs/340x224-1.jpg`" />
         </div>
         <div class="info">
           <p class="category">{{ item.subtitle }}</p>
