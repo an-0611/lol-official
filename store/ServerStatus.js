@@ -1,4 +1,5 @@
 import utils from '~/utils';
+import services from '../services';
 
 const state = () => ({
   lists: [],
@@ -12,7 +13,8 @@ const actions = {
   async getIndexTicks({ commit }) {
     try {
       commit(TOGGLE_LOADING, true);
-      const res = await this.$api.$get('/api/index/ticks');
+      // const res = await this.$api.$get('/api/index/ticks');
+      const res = services.getTick;
       const data = utils.checkRes(res);
       commit(UPDATE_SERVER_STATUS_LIST, data);
     } catch (error) {

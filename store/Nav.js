@@ -1,4 +1,5 @@
 import utils from '~/utils';
+import services from '~/services/index';
 
 const state = () => ({
   navLoading: false,
@@ -45,7 +46,8 @@ const actions = {
   async getNav({ dispatch, commit }, { route }) {
     try {
       commit(TOGGLE_LOADING, true);
-      const res = await this.$api.$get('/api/navigation-menu');
+      // const res = await this.$api.$get('/api/navigation-menu');
+      const res = await services.getNav;
       const data = utils.checkRes(res);
       commit(UPDATE_NAV, data);
       if (route !== '/') dispatch('updateBgImgAndFgImg', { route });

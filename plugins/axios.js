@@ -1,5 +1,4 @@
 import utils from '../utils';
-
 export default ({ $axios }, inject) => {
   // Create a custom axios instance
   const api = $axios.create({

@@ -1,4 +1,5 @@
 import utils from '~/utils';
+import services from '~/services/index';
 
 const state = () => ({
   topicNewsLoading: true,
@@ -33,7 +34,8 @@ const actions = {
   async getTopicNews({ commit }) {
     try {
       commit(TOGGLE_TOPIC_NEWS_LOADING, true);
-      const res = await this.$api.$get('/api/news/topic');
+      // const res = await this.$api.$get('/api/news/topic');
+      const res = await services.getTopicNews;
       const data = utils.checkRes(res);
       commit(UPDATE_TOPIC_NEWS, data);
     } catch (error) {
@@ -46,14 +48,15 @@ const actions = {
   async getNews({ commit }, { category, keyword, perPage, page }) {
     try {
       commit(TOGGLE_LOADING, true);
-      const res = await this.$api.$get('/api/news/search', {
-        params: {
-          category,
-          keyword,
-          per_page: perPage,
-          page,
-        },
-      });
+      // const res = await this.$api.$get('/api/news/search', {
+      //   params: {
+      //     category,
+      //     keyword,
+      //     per_page: perPage,
+      //     page,
+      //   },
+      // });
+      const res = services.getNews;
       const data = utils.checkRes(res);
       commit(UPDATE_NEWS, data);
       if (data.news.length) commit(UPDATE_PAGE);
@@ -68,14 +71,15 @@ const actions = {
     try {
       commit(TOGGLE_REFETCH_LOADING, true);
       const { page } = state;
-      const res = await this.$api.$get('/api/news/search', {
-        params: {
-          category,
-          keyword,
-          per_page: perPage,
-          page,
-        },
-      });
+      // const res = await this.$api.$get('/api/news/search', {
+      //   params: {
+      //     category,
+      //     keyword,
+      //     per_page: perPage,
+      //     page,
+      //   },
+      // });
+      const res = services.getNews;
       const data = utils.checkRes(res);
       const { next } = data;
       commit(UPDATE_PAGE);
@@ -92,7 +96,8 @@ const actions = {
   async getNewsCategories({ commit }) {
     try {
       await commit(TOGGLE_CATEGORIES_LOADING, true);
-      const res = await this.$api.$get('/api/news/categories');
+      // const res = await this.$api.$get('/api/news/categories');
+      const res = services.getNewsCategories;
       const data = utils.checkRes(res);
       commit(UPDATE_CATEGORIES, data);
     } catch (error) {
@@ -105,9 +110,10 @@ const actions = {
   async getNewContent({ commit }, { newId }) {
     try {
       await commit(TOGGLE_LOADING, true);
-      const res = await this.$api.$get('/api/news/detail', {
-        params: { news_id: newId },
-      });
+      // const res = await this.$api.$get('/api/news/detail', {
+      //   params: { news_id: newId },
+      // });
+      const res = services.getNewContent;
       const data = utils.checkRes(res);
       commit(UPDATE_NEW_CONTENT, data);
     } catch (error) {

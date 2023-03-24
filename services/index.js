@@ -6,25 +6,27 @@ const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
 
 // Node.js HTTP server request handler, support ssr and csr
-const returnRes = (data) => async (req, res) => {
-  let body = '';
-  req.query = url.parse(req.url, true).query;
-  req.on('data', (data) => {
-    body += data;
-  });
-  req.on('end', () => {
-    if (body !== '') {
-      req.body = JSON.parse(body);
-    }
-  });
-  await delay(200);
-  if (typeof data === 'function') {
-    const done = (local) =>
-      res.end(JSON.stringify(utils.camelizeKeys(local), null, 4));
-    return data(req, res, done);
-  }
-  return res.end(JSON.stringify(utils.camelizeKeys(data), null, 4));
-};
+// const returnRes = (data) => async (req, res) => {
+//   let body = '';
+//   req.query = url.parse(req.url, true).query;
+//   req.on('data', (data) => {
+//     body += data;
+//   });
+//   req.on('end', () => {
+//     if (body !== '') {
+//       req.body = JSON.parse(body);
+//     }
+//   });
+//   await delay(200);
+//   if (typeof data === 'function') {
+//     const done = (local) =>
+//       res.end(JSON.stringify(utils.camelizeKeys(local), null, 4));
+//     return data(req, res, done);
+//   }
+//   return res.end(JSON.stringify(utils.camelizeKeys(data), null, 4));
+// };
+
+const returnRes = (data) => utils.camelizeKeys(data);
 
 // https://github.com/senchalabs/connect#appusefn
 // The route is always terminated at a path separator (/) or a dot (.) character. This means the given routes /foo/ and /foo are the same and both will match requests with the URLs /foo, /foo/, /foo/bar, and /foo.bar, but not match a request with the URL /foobar.
@@ -244,141 +246,237 @@ export default {
       ],
     },
   }),
-  getMain: returnRes((req, res, done) => {
-    // /api/index/ticks
-    if (req.originalUrl === '/api/index/ticks') {
-      return done({
-        data: {
-          currentTicks: [
-            {
-              type: 1,
-              title: '消息1',
-              message:
-                '1稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
-              time: 1605608433,
-            },
-          ],
-          solvedTicks: [
-            {
-              type: 0,
-              message:
-                '0稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
-              time: 1605608433,
-            },
-            {
-              type: 1,
-              title: '消息2',
-              message:
-                '1稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
-              time: 1605608433,
-            },
-            {
-              type: 2,
-              title: '消息3',
-              message:
-                '2稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
-              time: 1605608433,
-            },
-          ],
-        },
-      });
-    }
+  // getMain: returnRes((req, res, done) => {
+  //   // /api/index/ticks
+  //   if (req.originalUrl === '/api/index/ticks') {
+  //     return done({
+  //       data: {
+  //         currentTicks: [
+  //           {
+  //             type: 1,
+  //             title: '消息1',
+  //             message:
+  //               '1稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+  //             time: 1605608433,
+  //           },
+  //         ],
+  //         solvedTicks: [
+  //           {
+  //             type: 0,
+  //             message:
+  //               '0稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+  //             time: 1605608433,
+  //           },
+  //           {
+  //             type: 1,
+  //             title: '消息2',
+  //             message:
+  //               '1稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+  //             time: 1605608433,
+  //           },
+  //           {
+  //             type: 2,
+  //             title: '消息3',
+  //             message:
+  //               '2稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+  //             time: 1605608433,
+  //           },
+  //         ],
+  //       },
+  //     });
+  //   }
+  //   // /api/index
+  //   return done({
+  //     data: {
+  //       banners: [
+  //         {
+  //           img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/732.jpg',
+  //           url: 'https://google.com',
+  //         },
+  //         {
+  //           img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/736.jpg',
+  //           url: 'https://google.com',
+  //         },
+  //         {
+  //           img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/745.jpg',
+  //           url: 'https://google.com',
+  //         },
+  //         {
+  //           img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/746.jpg',
+  //           url: 'https://google.com',
+  //         },
+  //         {
+  //           img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/743.jpg',
+  //           url: 'https://google.com',
+  //         },
+  //       ],
+  //       news: [
+  //         {
+  //           id: 123,
+  //           title: '亞菲利歐技能簡介',
+  //           subtitle: '新英雄',
+  //           description:
+  //             '大多數的英雄都能用幾句話簡短地總結，但亞菲利歐和多數英雄不同。要精通「信仰銳武」需要紀律、專注力以及敏銳的思緒，所以請將這一份入門指南。',
+  //           img:
+  //             '~assets/img/340x224-1.jpg',
+  //           updated_at: 1679584178,
+  //         },
+  //         {
+  //           id: 1234,
+  //           title: '聯盟戰棋版本更新',
+  //           subtitle: '10.6',
+  //           description:
+  //             '這一次，我們要走得更高更遠。全新的棋組同時也代表著全新賽季的到來，隨之而來的還有新英雄、新特性、新裝備、新聯盟精靈以及新競技場造型。',
+  //           img:
+  //             '~assets/img/340x224-1.jpg',
+  //           updated_at: 1679584178,
+  //         },
+  //         {
+  //           id: 12345,
+  //           title: '亞大人節禮物來襲！',
+  //           subtitle: '新活動',
+  //           description:
+  //             '金玩具平均獎池價值超高，只要 150 聯盟幣就有機會拿自選造型!<br/>什麼?太省了吧!',
+  //           img:
+  //             '~assets/img/340x224-1.jpg',
+  //           updated_at: 1679584178,
+  //         },
+  //         {
+  //           id: 123456,
+  //           title: '女巫的邀請，免費好禮邀你參加！',
+  //           subtitle: '新活動',
+  //           description:
+  //             '活動期間內，登入手機/遊戲大廳活動頁，即可獲得 10個邀請函的贈送機會。透過分享連結至 Whatsapp、Facebook、Line等',
+  //           img:
+  //             '~assets/img/340x224-1.jpg',
+  //           updated_at: 1679584178,
+  //         },
+  //         {
+  //           id: 1234567,
+  //           title: '04/07 伺服器異常(已修復)',
+  //           subtitle: '系統維護',
+  //           description:
+  //             '系統於 05:30發生異常，約德爾工兵緊急救援，目前正在搶救中，造成不便，敬請見諒。',
+  //           img:
+  //             '~assets/img/340x224-1.jpg',
+  //           updated_at: 1679584178,
+  //         },
+  //         {
+  //           id: 12345678,
+  //           title: '女巫集會版本更新',
+  //           subtitle: '10.8',
+  //           description:
+  //             '孩子們 歡迎來到版本 10.7<br/>首先要說的是戰戰兢兢地等待總算結束了，「它」終於來了......那個最可怕的稻草人出現啦!(泰德',
+  //           img:
+  //             '~assets/img/340x224-1.jpg',
+  //           updated_at: 1679584178,
+  //         },
+  //       ],
+  //       tick: [
+  //         {
+  //           type: 0,
+  //           content:
+  //             '系統於 05:30 發生異常，約德爾工兵緊急救援，目前正在搶救中，造成不便，敬請見諒。※ 進度更新 目前已確認全球驗證伺服器異常，原廠正在搶修中，請大家耐心等候。',
+  //         },
+  //       ],
+  //     },
+  //   });
+  // }),
+  getMain: returnRes({
     // /api/index
-    return done({
-      data: {
-        banners: [
-          {
-            img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/732.jpg',
-            url: 'https://google.com',
-          },
-          {
-            img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/736.jpg',
-            url: 'https://google.com',
-          },
-          {
-            img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/745.jpg',
-            url: 'https://google.com',
-          },
-          {
-            img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/746.jpg',
-            url: 'https://google.com',
-          },
-          {
-            img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/743.jpg',
-            url: 'https://google.com',
-          },
-        ],
-        news: [
-          {
-            id: 123,
-            title: '亞菲利歐技能簡介',
-            subtitle: '新英雄',
-            description:
-              '大多數的英雄都能用幾句話簡短地總結，但亞菲利歐和多數英雄不同。要精通「信仰銳武」需要紀律、專注力以及敏銳的思緒，所以請將這一份入門指南。',
-            img:
-              '~assets/img/340x224-1.jpg',
-            updated_at: 1679584178,
-          },
-          {
-            id: 1234,
-            title: '聯盟戰棋版本更新',
-            subtitle: '10.6',
-            description:
-              '這一次，我們要走得更高更遠。全新的棋組同時也代表著全新賽季的到來，隨之而來的還有新英雄、新特性、新裝備、新聯盟精靈以及新競技場造型。',
-            img:
-              '~assets/img/340x224-1.jpg',
-            updated_at: 1679584178,
-          },
-          {
-            id: 12345,
-            title: '亞大人節禮物來襲！',
-            subtitle: '新活動',
-            description:
-              '金玩具平均獎池價值超高，只要 150 聯盟幣就有機會拿自選造型!<br/>什麼?太省了吧!',
-            img:
-              '~assets/img/340x224-1.jpg',
-            updated_at: 1679584178,
-          },
-          {
-            id: 123456,
-            title: '女巫的邀請，免費好禮邀你參加！',
-            subtitle: '新活動',
-            description:
-              '活動期間內，登入手機/遊戲大廳活動頁，即可獲得 10個邀請函的贈送機會。透過分享連結至 Whatsapp、Facebook、Line等',
-            img:
-              '~assets/img/340x224-1.jpg',
-            updated_at: 1679584178,
-          },
-          {
-            id: 1234567,
-            title: '04/07 伺服器異常(已修復)',
-            subtitle: '系統維護',
-            description:
-              '系統於 05:30發生異常，約德爾工兵緊急救援，目前正在搶救中，造成不便，敬請見諒。',
-            img:
-              '~assets/img/340x224-1.jpg',
-            updated_at: 1679584178,
-          },
-          {
-            id: 12345678,
-            title: '女巫集會版本更新',
-            subtitle: '10.8',
-            description:
-              '孩子們 歡迎來到版本 10.7<br/>首先要說的是戰戰兢兢地等待總算結束了，「它」終於來了......那個最可怕的稻草人出現啦!(泰德',
-            img:
-              '~assets/img/340x224-1.jpg',
-            updated_at: 1679584178,
-          },
-        ],
-        tick: [
-          {
-            type: 0,
-            content:
-              '系統於 05:30 發生異常，約德爾工兵緊急救援，目前正在搶救中，造成不便，敬請見諒。※ 進度更新 目前已確認全球驗證伺服器異常，原廠正在搶修中，請大家耐心等候。',
-          },
-        ],
-      },
-    });
+    data: {
+      banners: [
+        {
+          img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/732.jpg',
+          url: 'https://google.com',
+        },
+        {
+          img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/736.jpg',
+          url: 'https://google.com',
+        },
+        {
+          img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/745.jpg',
+          url: 'https://google.com',
+        },
+        {
+          img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/746.jpg',
+          url: 'https://google.com',
+        },
+        {
+          img: 'http://dl.garenanow.com/lol/loltw/web/images/promo/743.jpg',
+          url: 'https://google.com',
+        },
+      ],
+      news: [
+        {
+          id: 123,
+          title: '亞菲利歐技能簡介',
+          subtitle: '新英雄',
+          description:
+            '大多數的英雄都能用幾句話簡短地總結，但亞菲利歐和多數英雄不同。要精通「信仰銳武」需要紀律、專注力以及敏銳的思緒，所以請將這一份入門指南。',
+          img:
+            '~assets/img/340x224-1.jpg',
+          updated_at: 1679584178,
+        },
+        {
+          id: 1234,
+          title: '聯盟戰棋版本更新',
+          subtitle: '10.6',
+          description:
+            '這一次，我們要走得更高更遠。全新的棋組同時也代表著全新賽季的到來，隨之而來的還有新英雄、新特性、新裝備、新聯盟精靈以及新競技場造型。',
+          img:
+            '~assets/img/340x224-1.jpg',
+          updated_at: 1679584178,
+        },
+        {
+          id: 12345,
+          title: '亞大人節禮物來襲！',
+          subtitle: '新活動',
+          description:
+            '金玩具平均獎池價值超高，只要 150 聯盟幣就有機會拿自選造型!<br/>什麼?太省了吧!',
+          img:
+            '~assets/img/340x224-1.jpg',
+          updated_at: 1679584178,
+        },
+        {
+          id: 123456,
+          title: '女巫的邀請，免費好禮邀你參加！',
+          subtitle: '新活動',
+          description:
+            '活動期間內，登入手機/遊戲大廳活動頁，即可獲得 10個邀請函的贈送機會。透過分享連結至 Whatsapp、Facebook、Line等',
+          img:
+            '~assets/img/340x224-1.jpg',
+          updated_at: 1679584178,
+        },
+        {
+          id: 1234567,
+          title: '04/07 伺服器異常(已修復)',
+          subtitle: '系統維護',
+          description:
+            '系統於 05:30發生異常，約德爾工兵緊急救援，目前正在搶救中，造成不便，敬請見諒。',
+          img:
+            '~assets/img/340x224-1.jpg',
+          updated_at: 1679584178,
+        },
+        {
+          id: 12345678,
+          title: '女巫集會版本更新',
+          subtitle: '10.8',
+          description:
+            '孩子們 歡迎來到版本 10.7<br/>首先要說的是戰戰兢兢地等待總算結束了，「它」終於來了......那個最可怕的稻草人出現啦!(泰德',
+          img:
+            '~assets/img/340x224-1.jpg',
+          updated_at: 1679584178,
+        },
+      ],
+      tick: [
+        {
+          type: 0,
+          content:
+            '系統於 05:30 發生異常，約德爾工兵緊急救援，目前正在搶救中，造成不便，敬請見諒。※ 進度更新 目前已確認全球驗證伺服器異常，原廠正在搶修中，請大家耐心等候。',
+        },
+      ],
+    },
   }),
   getTopicNews: returnRes({
     data: {
@@ -786,6 +884,43 @@ export default {
         {
           name: 'version-2',
           link: 'https://google.com',
+        },
+      ],
+    },
+  }),
+
+  // 因為現在假資料不走 http , 沒有 req.originalUrl 可以判斷 '/api/index/ticks' 所以開一個 getTick 給 store 用
+  getTick: returnRes({
+    data: {
+      currentTicks: [
+        {
+          type: 1,
+          title: '消息1',
+          message:
+            '1稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+          time: 1605608433,
+        },
+      ],
+      solvedTicks: [
+        {
+          type: 0,
+          message:
+            '0稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+          time: 1605608433,
+        },
+        {
+          type: 1,
+          title: '消息2',
+          message:
+            '1稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+          time: 1605608433,
+        },
+        {
+          type: 2,
+          title: '消息3',
+          message:
+            '2稍早全區部分玩家會遇到登入驗證的狀況，經過原廠調查後，問題已經解決，玩家可以正常登入遊戲。',
+          time: 1605608433,
         },
       ],
     },

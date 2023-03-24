@@ -1,4 +1,5 @@
 import utils from '~/utils';
+import services from '~/services/index';
 
 const state = () => ({
   mainLoading: false,
@@ -14,7 +15,8 @@ const actions = {
   async getMain({ commit }) {
     try {
       commit(TOGGLE_LOADING, true);
-      const res = await this.$api.$get('/api/index');
+      // const res = await this.$api.$get('/api/index');
+      const res = await services.getMain;
       const data = utils.checkRes(res);
       commit(UPDATE_MAIN, data);
     } catch (error) {

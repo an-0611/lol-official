@@ -1,4 +1,5 @@
 import utils from '~/utils';
+import services from '~/services/index';
 
 const state = () => ({
   banList: [],
@@ -12,9 +13,10 @@ const actions = {
   async getBanList({ commit }, { months }) {
     try {
       commit(TOGGLE_BAN_LOADING, true);
-      const res = await this.$api.$get('/api/ban/month', {
-        params: { delta_month: months },
-      });
+      // const res = await this.$api.$get('/api/ban/month', {
+      //   params: { delta_month: months },
+      // });
+      const res = await services.getBanList;
       const data = utils.checkRes(res);
       commit(UPDATE_BAN_LIST, data.banList);
     } catch (error) {
@@ -27,9 +29,10 @@ const actions = {
   async getBanSummoner({ commit }, { name }) {
     try {
       commit(TOGGLE_BAN_LOADING, true);
-      const res = await this.$api.$get('/api/ban/search', {
-        params: { summoner: name },
-      });
+      // const res = await this.$api.$get('/api/ban/search', {
+      //   params: { summoner: name },
+      // });
+      const res = await services.getBanSummoner;
       const data = utils.checkRes(res);
       commit(UPDATE_BAN_LIST, data.banList);
     } catch (error) {

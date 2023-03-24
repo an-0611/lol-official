@@ -77,6 +77,11 @@ export default {
     // },
   },
 
+  // axios: {
+  //   proxy: true,
+  //   credentials: false,
+  // },
+
   serverMiddleware: [
     // '~/server-middleware/checkRoute',
     ...(true
