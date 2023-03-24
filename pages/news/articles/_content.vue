@@ -62,19 +62,15 @@ import { mapState, mapActions } from 'vuex';
 
 export default {
   name: 'NewsContentPage',
-  // async fetch({ store, params }) {
-  //   await store.dispatch('News/getNewContent', {
-  //     newId: params.content,
-  //   });
-  // },
+  async fetch({ store, params }) {
+    await store.dispatch('News/getNewContent', {
+      newId: params.content,
+    });
+  },
   // validate({ params }) {
   //   // Must be a number
   //   return /^\d+$/.test(params.content);
   // },
-  async generate({ store, params }) {
-    const { content } = params
-    await store.dispatch('getNewContent', { newId: content });
-  },
   data() {
     return {
       breadData: [
@@ -102,7 +98,7 @@ export default {
     //   window.location.replace(this.newContent.externalLink);
     //   return;
     // }
-    this.getNewContent({ newId: this.$route.params.content });
+    // this.getNewContent({ newId: this.$route.params.content });
     //
     if (this.footprint) this.breadData.push(...this.footprint);
     const tables = document.querySelectorAll('table');
