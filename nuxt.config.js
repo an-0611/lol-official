@@ -18,7 +18,7 @@ export default {
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'my-app',
+    title: 'lol-demo',
     htmlAttrs: {
       lang: 'tw', // env.REGION
     },
@@ -120,4 +120,9 @@ export default {
         ]
       : []),
   ],
+
+  router: {
+    base: '/lol-official/'
+  },
+  publicPath: '/lol-official/'
 }
