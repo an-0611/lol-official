@@ -1,0 +1,75 @@
+@import './normalize.scss';
+@import './reset.scss';
+@import './fonts.scss';
+
+html {
+  height: 100%;
+  font-size: 100px;
+  @include rwd($lg) {
+    font-size: calc(100vw / 1334 * 100);
+  }
+  @include rwd($md) {
+    font-size: calc(100vw / 1000 * 100);
+    #J-sitebar {
+      display: none;
+    }
+  }
+  @include rwd($sm) {
+    font-size: calc(100vw / 750 * 100);
+  }
+  body {
+    @include fullsize();
+  }
+  .lock {
+    overflow: hidden;
+  }
+  a {
+    text-decoration: none;
+  }
+  img {
+    width: 100%;
+  }
+  input {
+    &::-webkit-input-placeholder {
+      line-height: normal !important;
+      // https://stackoverflow.com/questions/9323596/placeholder-text-is-not-vertically-centered-in-safari
+    }
+  }
+  .swiper-pagination-bullet {
+    width: 0.12rem;
+    height: 0.12rem;
+    background: #559392;
+    opacity: 1 !important;
+  }
+  .swiper-pagination-bullet-active {
+    background: #c2902d;
+  }
+  .swiper-container-horizontal > .swiper-pagination-bullets {
+    bottom: 0.17rem;
+    @include rwd($md) {
+      bottom: 0.04rem;
+    }
+  }
+  .swiper-container {
+    width: 100%;
+    height: 100%;
+  }
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+  }
+  .clearfix {
+    clear: both;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a {
+  color: $main-link-color;
+}
